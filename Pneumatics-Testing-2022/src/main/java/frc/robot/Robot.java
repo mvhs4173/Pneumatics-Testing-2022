@@ -5,13 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
+import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
-
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,8 +20,6 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  public Solenoid exampleSolenoidPCM;
-  public Solenoid exampleSolenoidPCM2;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -36,7 +30,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-
   }
 
   /**
@@ -86,29 +79,21 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    exampleSolenoidPCM = new Solenoid(1, PneumaticsModuleType.CTREPCM, 1);
-    exampleSolenoidPCM.set(false);
-    exampleSolenoidPCM2 = new Solenoid(1, PneumaticsModuleType.CTREPCM, 0);
-    exampleSolenoidPCM2.set(false);
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
     if (RobotContainer.xboxController.getBButton()) {
-      exampleSolenoidPCM.set(true);
-      System.out.println(true);
+      RobotContainer.testDoubleSolenoid.set(kForward);
     } else {
-      exampleSolenoidPCM.set(false);
-      System.out.println(false);
+      RobotContainer.testDoubleSolenoid.set(kReverse);
     }
-    if (RobotContainer.xboxController.getAButton()) {
-      exampleSolenoidPCM2.set(true);
-      System.out.println(true);
+    /*if (RobotContainer.xboxController.getAButton()) {
+      RobotContainer.exampleSolenoidPCM2.set(true);
     } else {
-      exampleSolenoidPCM2.set(false);
-      System.out.println(false);
-    }
+      RobotContainer.exampleSolenoidPCM2.set(false);
+    }*/
   }
 
   @Override
