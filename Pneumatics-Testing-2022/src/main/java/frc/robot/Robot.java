@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -72,6 +74,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+
+    RobotContainer.testDoubleSolenoid.set(kReverse);
+
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -83,16 +88,11 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {
+  public void teleopPeriodic() {/*
     if (RobotContainer.xboxController.getBButton()) {
       RobotContainer.testDoubleSolenoid.set(kForward);
     } else {
       RobotContainer.testDoubleSolenoid.set(kReverse);
-    }
-    /*if (RobotContainer.xboxController.getAButton()) {
-      RobotContainer.exampleSolenoidPCM2.set(true);
-    } else {
-      RobotContainer.exampleSolenoidPCM2.set(false);
     }*/
   }
 
