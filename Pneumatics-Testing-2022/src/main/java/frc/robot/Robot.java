@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -74,6 +75,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    
+    RobotContainer.phCompressor.enableAnalog(100.0, 120.0);
 
     RobotContainer.testDoubleSolenoid.set(kReverse);
 
@@ -88,12 +91,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {/*
-    if (RobotContainer.xboxController.getBButton()) {
-      RobotContainer.testDoubleSolenoid.set(kForward);
-    } else {
-      RobotContainer.testDoubleSolenoid.set(kReverse);
-    }*/
+  public void teleopPeriodic() {
+    
+    SmartDashboard.putNumber("test", RobotContainer.phCompressor.getPressure());
+    
   }
 
   @Override

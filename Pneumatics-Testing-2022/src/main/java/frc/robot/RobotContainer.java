@@ -4,8 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
@@ -28,13 +30,12 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   public static XboxController xboxController = new XboxController(0);
-  public static PneumaticsControlModule pcm = new PneumaticsControlModule(1);
-
-  public static DoubleSolenoid testDoubleSolenoid = new DoubleSolenoid(1, PneumaticsModuleType.CTREPCM, 0, 1);
-
-  public static Command toggleDoubleSolenoid = new ToggleDoubleSolenoid();
-
   public static JoystickButton solenoidToggleButton = new JoystickButton(xboxController, 2);
+  public static Command toggleDoubleSolenoid = new ToggleDoubleSolenoid();
+ 
+  public static PneumaticHub pHub = new PneumaticHub(1);
+  public static Compressor phCompressor = new Compressor(1, PneumaticsModuleType.REVPH);
+  public static DoubleSolenoid testDoubleSolenoid = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 0, 1);
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
